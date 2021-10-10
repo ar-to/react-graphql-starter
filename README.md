@@ -47,3 +47,4 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## Dependancies
 [Chakra-UI](https://chakra-ui.com/docs/getting-started)
+[React-Router](https://reactrouter.com/)
