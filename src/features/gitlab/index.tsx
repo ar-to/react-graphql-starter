@@ -2,6 +2,7 @@ import * as React from "react";
 import {
   Badge,
   Box,
+  Button,
   Divider,
   Flex,
   Heading,
@@ -11,30 +12,47 @@ import {
   ListItem,
   Spacer,
   Input,
-  Link
+  Link,
+  Icon,
 } from "@chakra-ui/react";
-import {
-  MdBook,
-  MdSettings,
-  MdOpenInNew
-} from "react-icons/md";
-import {
-  useGetFirstProjectsQuery
-} from "app/services/gitlab.api";
+import { MdBook, MdSettings, MdOpenInNew, MdSearch } from "react-icons/md";
+import { useGetFirstProjectsQuery } from "app/services/gitlab.api";
 
 const ProjectsList = () => {
-  // const [search, setSearch] = React.useState("mongodb");
+  const [search, setSearch] = React.useState("");
   const [value, setValue] = React.useState("");
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     setValue(event.target.value);
 
-  const { data: projects, isLoading } = useGetFirstProjectsQuery({
-    search: value
+  const {
+    data: projects,
+    isLoading,
+    isFetching,
+  } = useGetFirstProjectsQuery({
+    search,
   });
 
   if (isLoading) {
     return <div>Loading</div>;
   }
+
+  const fetchProjectsPerString = () => {
+    setSearch(value);
+  };
+
+  const fetchProjectsPerStringUponKeyEnter = (
+    event: React.KeyboardEvent<HTMLInputElement>
+  ) => {
+    /**
+     * References
+     * @see https://reactjs.org/docs/events.html#keyboard-events
+     * @see https://www.w3.org/TR/uievents-key/#key-string
+     * @see https://stackoverflow.com/a/35707795/9270352
+     */
+    if (event.key === "Enter") {
+      setSearch(value);
+    }
+  };
 
   return (
     <Box>
@@ -42,9 +60,17 @@ const ProjectsList = () => {
         <Input
           value={value}
           onChange={handleChange}
+          onKeyPress={fetchProjectsPerStringUponKeyEnter}
           placeholder="mongodb"
           size="sm"
         />
+        <Button
+          onClick={fetchProjectsPerString}
+          isLoading={isFetching}
+          disabled={false}
+        >
+          <Icon as={MdSearch} boxSize={6} />
+        </Button>
       </HStack>
       <List spacing={3} mt={6}>
         {projects?.map(({ id, name, description, webUrl }) => (

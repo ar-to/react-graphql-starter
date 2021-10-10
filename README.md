@@ -67,3 +67,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 Style guides taken from a mix of sources. 
 [AirBnB React Guide](https://airbnb.io/javascript/react/) - overall convensions
 [Angular Naming](https://angular.io/guide/styleguide#general-naming-guidelines) - `feature.type.ts` convension is prefered but PascalCase is also supported.
+
+## TODO
+
+- mock graphql api and update tests

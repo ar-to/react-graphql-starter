@@ -49,7 +49,6 @@ export const gitlabApi = createApi({
           first
         }
       }),
-      // transformResponse: (response: IGitlabResponse) => response.projects.nodes
       transformResponse: (response: IGitlabResponse) => {
         return _.orderBy(response.projects.nodes, ["name"], ["asc"]);
       }
