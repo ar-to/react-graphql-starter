@@ -23,7 +23,7 @@ import {
 } from "react-icons/md";
 import Moment from "react-moment";
 import { useGetProjectQuery } from "app/services/gitlab.api";
-import { history } from "app/shared";
+import { history, TopColor } from "app/shared";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -41,7 +41,7 @@ const ProjectContent = () => {
   } = useGetProjectQuery({
     fullPath,
   });
-  console.log(">>>>>", project);
+
   if (isLoading) {
     return <div>Loading</div>;
   }
@@ -133,7 +133,7 @@ const ProjectContent = () => {
 export const ProjectPage = () => {
   return (
     <Box>
-      <Flex wrap="wrap" bg="#011627" p={4} color="white">
+      <Flex wrap="wrap" bg={TopColor} p={4} color="white">
         <Box>
           <Heading size="xl">Gitlab Project</Heading>
         </Box>

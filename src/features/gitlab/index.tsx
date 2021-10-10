@@ -18,7 +18,7 @@ import {
 } from "@chakra-ui/react";
 import { MdBook, MdSettings, MdOpenInNew, MdSearch } from "react-icons/md";
 import { useGetFirstProjectsQuery } from "app/services/gitlab.api";
-import { ERoute } from "app/shared";
+import { ERoute, TopColor } from "app/shared";
 
 const ProjectsList = () => {
   let history = useHistory();
@@ -126,7 +126,7 @@ const ProjectsList = () => {
 export const GitlabSearch = () => {
   return (
     <Box>
-      <Flex wrap="wrap" bg="#011627" p={4} color="white">
+      <Flex wrap="wrap" bg={TopColor} p={4} color="white">
         <Box>
           <Heading size="xl">Search Gitlab Projects</Heading>
         </Box>
