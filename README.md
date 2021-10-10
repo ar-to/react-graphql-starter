@@ -45,6 +45,25 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
-## Dependancies
+## Dependencies & Prerequisites
 [Chakra-UI](https://chakra-ui.com/docs/getting-started)
+
 [React-Router](https://reactrouter.com/)
+
+[React-Icons](https://react-icons.github.io/react-icons)
+
+[Redux-Toolkit-Query](https://redux-toolkit.js.org/rtk-query/overview)
+
+[Graphql-Request Client](https://www.npmjs.com/package/graphql-request) - depends on `graphql` also
+
+[History](https://www.npmjs.com/package/history)
+
+[Gitlab GraphQL API](https://docs.gitlab.com/ee/api/graphql/getting_started.html) - this project uses a personal token as a react env var via `REACT_APP_GITLAB_PERSONAL_ACCESS_TOKEN`. Change it inside a `.env.development.local`.
+
+[React Env Vars](https://create-react-app.dev/docs/adding-custom-environment-variables/) - 
+> You need to restart the development server after changing .env files.
+
+## References
+Style guides taken from a mix of sources. 
+[AirBnB React Guide](https://airbnb.io/javascript/react/) - overall convensions
+[Angular Naming](https://angular.io/guide/styleguide#general-naming-guidelines) - `feature.type.ts` convension is prefered but PascalCase is also supported.
