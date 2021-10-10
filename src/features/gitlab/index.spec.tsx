@@ -31,4 +31,7 @@ describe("gitlab search", () => {
     // get input element and trigger a keyup event
     // TODO: mock the graphql api
   });
+  it.skip("should redirect project click to the project page", () => {
+    // TODO: mock the graphql api
+  });
 });

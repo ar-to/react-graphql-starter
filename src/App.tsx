@@ -5,13 +5,15 @@ import {
 } from "react-router";
 import OriginalCounterPage from "features/counter";
 import GitlabSearch from "features/gitlab";
+import ProjectPage from "features/gitlab/ProjectPage";
 import { ERoute } from 'app/shared'
 
 function App() {
   return (
     <Switch>
+      <Route exact path={ERoute.ROOT} component={GitlabSearch} />
+      <Route path={ERoute.PROJECT} component={ProjectPage} />
       <Route path={ERoute.ORIGINAL} component={OriginalCounterPage} />
-      <Route path={ERoute.ROOT} component={GitlabSearch} />
     </Switch>
   );
 }

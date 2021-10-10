@@ -8,23 +8,28 @@ interface Project {
   id: string;
   description: string;
   webUrl: string;
+  fullPath: string;
 }
 
-interface IGitlabResponse {
+type Projects = Project[];
+
+interface IGitlabProjectsResponse {
   projects: {
     nodes: Project[];
   };
 }
 
-type Projects = Project[];
+interface IGitlabProjectResponse {
+  project: Project;
+}
 
 export const gitlabApi = createApi({
-  reducerPath: 'gitlabApi',
+  reducerPath: "gitlabApi",
   baseQuery: graphqlRequestBaseQuery({
     url: "https://gitlab.com/api/graphql",
     requestHeaders: {
-      authorization: `Bearer ${process.env.REACT_APP_GITLAB_PERSONAL_ACCESS_TOKEN}`
-    }
+      authorization: `Bearer ${process.env.REACT_APP_GITLAB_PERSONAL_ACCESS_TOKEN}`,
+    },
   }),
   endpoints: (builder) => ({
     getFirstProjects: builder.query<
@@ -40,20 +45,40 @@ export const gitlabApi = createApi({
                 id
                 description
                 webUrl
+                fullPath
               }
             }
           }
         `,
         variables: {
           search,
-          first
-        }
+          first,
+        },
       }),
-      transformResponse: (response: IGitlabResponse) => {
+      transformResponse: (response: IGitlabProjectsResponse) => {
         return _.orderBy(response.projects.nodes, ["name"], ["asc"]);
-      }
-    })
-  })
+      },
+    }),
+    getProject: builder.query<Project, { fullPath: string }>({
+      query: ({ fullPath }) => ({
+        document: gql`
+          query GetProject($fullPath: ID!) {
+            project(fullPath: $fullPath) {
+              name
+              id
+              description
+              webUrl
+              fullPath
+            }
+          }
+        `,
+        variables: {
+          fullPath,
+        },
+      }),
+      transformResponse: (response: IGitlabProjectResponse) => response.project,
+    }),
+  }),
 });
 
-export const { useGetFirstProjectsQuery } = gitlabApi;
+export const { useGetFirstProjectsQuery, useGetProjectQuery } = gitlabApi;

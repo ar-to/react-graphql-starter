@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useHistory } from "react-router-dom";
 import {
   Badge,
   Box,
@@ -17,8 +18,10 @@ import {
 } from "@chakra-ui/react";
 import { MdBook, MdSettings, MdOpenInNew, MdSearch } from "react-icons/md";
 import { useGetFirstProjectsQuery } from "app/services/gitlab.api";
+import { ERoute } from "app/shared";
 
 const ProjectsList = () => {
+  let history = useHistory();
   const [search, setSearch] = React.useState("");
   const [value, setValue] = React.useState("");
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
@@ -73,7 +76,7 @@ const ProjectsList = () => {
         </Button>
       </HStack>
       <List spacing={3} mt={6}>
-        {projects?.map(({ id, name, description, webUrl }) => (
+        {projects?.map(({ id, name, description, webUrl, fullPath }) => (
           <Box
             key={id}
             w="100%"
@@ -84,7 +87,12 @@ const ProjectsList = () => {
           >
             <ListItem
               key={id}
-              onClick={() => console.log("route to /:projectId")}
+              onClick={() => {
+                console.log("route to /:projectId");
+                // history.push(`${ERoute.ORIGINAL}`);
+                // history.push(`${ERoute.PROJECT}/${fullPath}`);
+                history.push(`${ERoute.PROJECT}?fullPath=${fullPath}`);
+              }}
             >
               <Badge ml="1" fontSize="0.8em" colorScheme="orange">
                 {name}
