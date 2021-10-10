@@ -63,6 +63,8 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 [React Env Vars](https://create-react-app.dev/docs/adding-custom-environment-variables/) - 
 > You need to restart the development server after changing .env files.
 
+[React MomentJS](https://www.npmjs.com/package/react-moment) - also depends on momentjs
+
 ## References
 Style guides taken from a mix of sources. 
 [AirBnB React Guide](https://airbnb.io/javascript/react/) - overall convensions
