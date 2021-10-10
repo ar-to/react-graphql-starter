@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { store } from "app/store";
-import GitlabSearch from "features/gitlab";
+import GitlabSearch from "features/gitlab/projects-search.page";
 
 describe("gitlab search", () => {
   it("should render loading for the query", () => {

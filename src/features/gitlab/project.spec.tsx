@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { store } from "app/store";
 import { BrowserRouter } from "react-router-dom";
-import ProjectPage from "features/gitlab/ProjectPage";
+import ProjectPage from "./project.page";
 import { ERoute, history } from "app/shared";
 
 const Utils = {

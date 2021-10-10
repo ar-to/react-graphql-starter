@@ -4,21 +4,17 @@ import {
   Badge,
   Box,
   Button,
-  Divider,
-  Flex,
-  Heading,
   HStack,
   List,
   ListIcon,
   ListItem,
-  Spacer,
   Input,
   Link,
   Icon,
 } from "@chakra-ui/react";
 import { MdBook, MdSettings, MdOpenInNew, MdSearch } from "react-icons/md";
 import { useGetFirstProjectsQuery } from "app/services/gitlab.api";
-import { ERoute, TopColor } from "app/shared";
+import { ERoute } from "app/shared";
 
 const ProjectsList = () => {
   let history = useHistory();
@@ -122,22 +118,4 @@ const ProjectsList = () => {
     </Box>
   );
 };
-
-export const GitlabSearch = () => {
-  return (
-    <Box>
-      <Flex wrap="wrap" bg={TopColor} p={4} color="white">
-        <Box>
-          <Heading size="xl">Search Gitlab Projects</Heading>
-        </Box>
-        <Spacer />
-      </Flex>
-      <Divider />
-      <Box p={4}>
-        <ProjectsList />
-      </Box>
-    </Box>
-  );
-};
-
-export default GitlabSearch;
+export default ProjectsList

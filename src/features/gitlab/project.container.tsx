@@ -4,11 +4,7 @@ import {
   Badge,
   Box,
   Button,
-  Divider,
-  Flex,
-  Heading,
   HStack,
-  Spacer,
   Link,
   Icon,
   List,
@@ -23,7 +19,7 @@ import {
 } from "react-icons/md";
 import Moment from "react-moment";
 import { useGetProjectQuery } from "app/services/gitlab.api";
-import { history, TopColor } from "app/shared";
+import { history } from "app/shared";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -101,9 +97,7 @@ const ProjectContent = () => {
               overflow="hidden"
               p={4}
             >
-              <ListItem
-                key={id}
-              >
+              <ListItem key={id}>
                 <Badge ml="1" fontSize="0.8em" colorScheme="orange">
                   {user?.name}
                 </Badge>
@@ -130,21 +124,4 @@ const ProjectContent = () => {
   );
 };
 
-export const ProjectPage = () => {
-  return (
-    <Box>
-      <Flex wrap="wrap" bg={TopColor} p={4} color="white">
-        <Box>
-          <Heading size="xl">Gitlab Project</Heading>
-        </Box>
-        <Spacer />
-      </Flex>
-      <Divider />
-      <Box p={4}>
-        <ProjectContent />
-      </Box>
-    </Box>
-  );
-};
-
-export default ProjectPage;
+export default ProjectContent;
