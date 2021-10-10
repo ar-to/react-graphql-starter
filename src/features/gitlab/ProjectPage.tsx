@@ -11,6 +11,9 @@ import {
   Spacer,
   Link,
   Icon,
+  List,
+  ListIcon,
+  ListItem,
 } from "@chakra-ui/react";
 import {
   MdBook,
@@ -38,7 +41,7 @@ const ProjectContent = () => {
   } = useGetProjectQuery({
     fullPath,
   });
-
+  console.log(">>>>>", project);
   if (isLoading) {
     return <div>Loading</div>;
   }
@@ -88,6 +91,40 @@ const ProjectContent = () => {
             {project?.webUrl}{" "}
           </Link>
         </p>
+        <List spacing={3} mt={6}>
+          {project?.projectMembers.nodes.map(({ id, user }) => (
+            <Box
+              key={id}
+              w="100%"
+              borderWidth="1px"
+              borderRadius="lg"
+              overflow="hidden"
+              p={4}
+            >
+              <ListItem
+                key={id}
+              >
+                <Badge ml="1" fontSize="0.8em" colorScheme="orange">
+                  {user?.name}
+                </Badge>
+                <p>
+                  <ListIcon as={MdBook} color="green.500" /> name: {user?.name}
+                </p>
+                <p>
+                  <ListIcon as={MdOpenInNew} color="green.500" />{" "}
+                  <Link
+                    href={user?.webUrl}
+                    color="teal.500"
+                    isExternal
+                    rel="noreferrer"
+                  >
+                    {user?.webUrl}{" "}
+                  </Link>
+                </p>
+              </ListItem>
+            </Box>
+          ))}
+        </List>
       </Box>
     </Box>
   );

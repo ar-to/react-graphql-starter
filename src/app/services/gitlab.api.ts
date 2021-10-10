@@ -3,6 +3,17 @@ import { createApi } from "@reduxjs/toolkit/query/react";
 import { gql } from "graphql-request";
 import { graphqlRequestBaseQuery } from "@rtk-query/graphql-request-base-query";
 
+interface User {
+  id:  string;
+  user: {
+    id: string;
+    name: string;
+    webUrl: string;
+  };
+}
+interface ProjectMembers {
+  nodes: User[];
+}
 interface Project {
   name: string;
   id: string;
@@ -11,6 +22,7 @@ interface Project {
   fullPath: string;
   createdAt: string;
   archived: boolean;
+  projectMembers: ProjectMembers;
 }
 
 type Projects = Project[];
@@ -73,6 +85,16 @@ export const gitlabApi = createApi({
               fullPath
               createdAt
               archived
+              projectMembers {
+                nodes {
+                  id
+                  user {
+                    id
+                    name
+                    webUrl
+                  }
+                }
+              }
             }
           }
         `,
@@ -80,7 +102,13 @@ export const gitlabApi = createApi({
           fullPath,
         },
       }),
-      transformResponse: (response: IGitlabProjectResponse) => response.project,
+      transformResponse: (response: IGitlabProjectResponse) => {
+        // const members = response.project.projectMembers.nodes
+        // console.log('...', response, '\n m',members);
+        // response.project.projectMembers = members;
+        return response.project;
+        // return {...response.project, projectMembers: members}
+      },
     }),
   }),
 });
