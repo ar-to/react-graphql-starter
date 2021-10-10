@@ -9,6 +9,8 @@ interface Project {
   description: string;
   webUrl: string;
   fullPath: string;
+  createdAt: string;
+  archived: boolean;
 }
 
 type Projects = Project[];
@@ -69,6 +71,8 @@ export const gitlabApi = createApi({
               description
               webUrl
               fullPath
+              createdAt
+              archived
             }
           }
         `,

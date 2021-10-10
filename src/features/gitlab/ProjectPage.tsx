@@ -18,6 +18,7 @@ import {
   MdOpenInNew,
   MdKeyboardBackspace,
 } from "react-icons/md";
+import Moment from "react-moment";
 import { useGetProjectQuery } from "app/services/gitlab.api";
 import { history } from "app/shared";
 
@@ -67,6 +68,14 @@ const ProjectContent = () => {
         <p>
           <Icon as={MdSettings} color="green.500" /> fullPath:{" "}
           {project?.fullPath}{" "}
+        </p>
+        <p>
+          <Icon as={MdSettings} color="green.500" /> created at:{" "}
+          <Moment format="YYYY/MM/DD">{project?.createdAt}</Moment>
+        </p>
+        <p>
+          <Icon as={MdSettings} color="green.500" /> archived:{" "}
+          {project?.archived.toString()}
         </p>
         <p>
           <Icon as={MdOpenInNew} color="green.500" />{" "}
