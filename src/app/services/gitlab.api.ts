@@ -22,7 +22,7 @@ export const gitlabApi = createApi({
       Projects,
       { search: string; first?: number }
     >({
-      query: ({ search, first = 10 }) => ({
+      query: ({ search, first = 20 }) => ({
         document: gql`
           query GetProjects($search: String, $first: Int = 10) {
             projects(search: $search, first: $first) {

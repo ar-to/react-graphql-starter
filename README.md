@@ -68,8 +68,15 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 ## References
 Style guides taken from a mix of sources. 
 [AirBnB React Guide](https://airbnb.io/javascript/react/) - overall convensions
+
 [Angular Naming](https://angular.io/guide/styleguide#general-naming-guidelines) - `feature.type.ts` convension is prefered but PascalCase is also supported.
+
+[React Loading Skeleton](https://www.npmjs.com/package/react-content-loader) - another alternative can be [react-content-loader](https://www.npmjs.com/package/react-content-loader)
 
 ## TODO
 
 - mock graphql api and update tests
+- pagination: 20 by default but load more per user request
+- ghost/skeleton screen loading
+- persist search term  and result list between sessions(stop/start app) via state management
+- UI/UX updates (animations, transitions, hover effects, etc)

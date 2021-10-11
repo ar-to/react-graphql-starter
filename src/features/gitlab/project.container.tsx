@@ -18,6 +18,7 @@ import {
   MdKeyboardBackspace,
 } from "react-icons/md";
 import Moment from "react-moment";
+import Skeleton from "react-loading-skeleton";
 import { useGetProjectQuery } from "app/services/gitlab.api";
 import { history } from "app/shared";
 
@@ -39,7 +40,28 @@ const ProjectContent = () => {
   });
 
   if (isLoading) {
-    return <div>Loading</div>;
+    // FEATURE: ghost/skeleton screens
+    return (
+      <Box>
+        <HStack spacing="14px">
+          <Button
+            isLoading={true}
+            disabled={true}
+          >
+            <Icon as={MdKeyboardBackspace} boxSize={6} />
+          </Button>
+        </HStack>
+        <Box
+          w="100%"
+          borderWidth="1px"
+          borderRadius="lg"
+          overflow="hidden"
+          p={4}
+        >
+          <Skeleton count={7} />
+        </Box>
+      </Box>
+    );
   }
 
   return (

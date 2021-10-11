@@ -1,4 +1,5 @@
 import * as React from "react";
+import _ from "lodash";
 import { useHistory } from "react-router-dom";
 import {
   Badge,
@@ -13,6 +14,7 @@ import {
   Icon,
 } from "@chakra-ui/react";
 import { MdBook, MdSettings, MdOpenInNew, MdSearch } from "react-icons/md";
+import Skeleton from 'react-loading-skeleton';
 import { useGetFirstProjectsQuery } from "app/services/gitlab.api";
 import { ERoute } from "app/shared";
 
@@ -32,7 +34,37 @@ const ProjectsList = () => {
   });
 
   if (isLoading) {
-    return <div>Loading</div>;
+    // FEATURE: ghost/skeleton screens
+    return (
+      <Box>
+        <HStack spacing="14px">
+          <Button
+            isLoading={true}
+            disabled={true}
+          >
+            <Icon as={MdSearch} boxSize={6} />
+          </Button>
+        </HStack>
+        <List spacing={3} mt={6}>
+          {_.range(5)?.map((i) => (
+            <Box
+              key={i}
+              w="100%"
+              borderWidth="1px"
+              borderRadius="lg"
+              overflow="hidden"
+              p={4}
+            >
+              <ListItem
+                key={i}
+              >
+                <Skeleton count={3} />
+              </ListItem>
+            </Box>
+          ))}
+        </List>
+      </Box>
+    );
   }
 
   const fetchProjectsPerString = () => {
@@ -84,9 +116,6 @@ const ProjectsList = () => {
             <ListItem
               key={id}
               onClick={() => {
-                console.log("route to /:projectId");
-                // history.push(`${ERoute.ORIGINAL}`);
-                // history.push(`${ERoute.PROJECT}/${fullPath}`);
                 history.push(`${ERoute.PROJECT}?fullPath=${fullPath}`);
               }}
             >

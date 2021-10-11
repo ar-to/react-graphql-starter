@@ -4,7 +4,7 @@ import { store } from "app/store";
 import GitlabSearch from "features/gitlab/projects-search.page";
 
 describe("gitlab search", () => {
-  it("should render loading for the query", () => {
+  it("should render loading for the page", () => {
     render(
       <Provider store={store}>
         <GitlabSearch />
@@ -13,7 +13,7 @@ describe("gitlab search", () => {
     setTimeout(() => {
       return;
     }, 3000);
-    const Loading = screen.getByText("Loading");
+    const Loading = screen.getByText("Search Gitlab Projects");
     expect(Loading).toBeInTheDocument();
   });
   it.skip("should render with just the placeholder in the input", () => {
@@ -33,5 +33,8 @@ describe("gitlab search", () => {
   });
   it.skip("should redirect project click to the project page", () => {
     // TODO: mock the graphql api
+  });
+  it.skip("should render the skeleton loading when waiting for response", () => {
+    // TODO: mock the graphql api and maybe simulate a longer response time 
   });
 });

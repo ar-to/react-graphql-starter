@@ -18,10 +18,10 @@ const Utils = {
 }
 
 describe("gitlab project page", () => {
-  it("should render loading for the query", () => {
+  it("should render title for the page", () => {
     Utils.renderProjectPage()
     // TODO: mock the graphql api
-    const Loading = screen.getByText("Loading");
+    const Loading = screen.getByText("Gitlab Project");
     expect(Loading).toBeInTheDocument();
   });
   it("should show the fullPath in the query string", () => {
@@ -38,5 +38,8 @@ describe("gitlab project page", () => {
 
     let actualFullPath = query.get("fullPath") || "";
     expect(actualFullPath).toBe(sampleFullPath);
+  });
+  it.skip("should render the skeleton loading when waiting for response", () => {
+    // TODO: mock the graphql api and maybe simulate a longer response time 
   });
 });
