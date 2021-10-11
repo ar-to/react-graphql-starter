@@ -77,6 +77,5 @@ Style guides taken from a mix of sources.
 
 - mock graphql api and update tests
 - pagination: 20 by default but load more per user request
-- ghost/skeleton screen loading
-- persist search term  and result list between sessions(stop/start app) via state management
+- persist search term  and result list between sessions(stop/start app) via state management and maybe local storage
 - UI/UX updates (animations, transitions, hover effects, etc)
